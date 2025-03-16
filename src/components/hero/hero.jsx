@@ -21,8 +21,8 @@ const Hero = () => {
         <div className="container-hero">
           <h1>Plantando tecnologia, colhendo resultados</h1>
           <div className="buttons-hero">
-            <buttonOutlined>Entrar em Contato</buttonOutlined>
-            <buttonFilled>Criar Conta</buttonFilled>
+            <buttonOutlined className="btn-outlined">Entrar em Contato</buttonOutlined>
+            <buttonFilled className="btn-filled">Criar Conta</buttonFilled>
           </div>
           <img
             src="/images/terrasense/icon_scroll_down.svg"
@@ -31,6 +31,7 @@ const Hero = () => {
         </div>
       </div>
     </section>
+    
   );
 };
 
