@@ -1,60 +1,82 @@
 import "./navbar.css";
-import "../utils/buttons/buttonFilled";
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import React from "react";
+import { Navbar, Nav, Container, Button } from "react-bootstrap";
 
-const NavbarTerrasense = () => {
-  return(
-    <Navbar class="navbar navbar-expand-lg fixed-top" id="navbar">
-      <Container class="container container-nav">
-        <Navbar.Brand 
-          href="#home" 
-          id="link-logo"
-          class="navbar-brand">
+const CustomNavbar = () => {
+  const [expanded, setExpanded] = React.useState(false);
+
+  const closeMenu = () => {
+    setExpanded(false);
+  };
+
+  return (
+    <Navbar 
+      expand="lg" 
+      fixed="top" 
+      id="navbar"
+      expanded={expanded}
+      onToggle={() => setExpanded(!expanded)}
+    >
+      <Container id="container-nav">
+        <Navbar.Brand href="/" id="link-logo" className="navbar-brand" onClick={closeMenu}>
           <img
-              src="/images/terrasense/terrasense_logohorizontal_branca.svg"
-              alt="Terra Sense AI Logo Horizontal Branca" />
+            src="./images/terrasense/terrasense_logohorizontal_branca.svg"
+            alt="Terra Sense AI Logo Horizontal Branca"
+            className="img-fluid"
+          />
         </Navbar.Brand>
+        
         <Navbar.Toggle 
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbar-items"
-          aria-controls="navbar-items"
-          aria-expand="false"
-          aria-label="Toggle navigation">
-          <i class="bi bi-list"></i>
+          aria-controls="navbar-items" 
+          className="navbar-toggler"
+          onClick={() => setExpanded(!expanded)}
+        >
+          <i className="bi bi-list"></i>
         </Navbar.Toggle>
-        <Navbar.Collapse class="collapse navbar-collapse" id="navbar-items">
-          <Nav class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <Nav.Link href="#inicio" class="link-menu">Início</Nav.Link>
-            </li>
-            <li class="nav-item">
-              <Nav.Link href="#quem-somos" class="link-menu">Quem Somos</Nav.Link>
-            </li>
-            <li class="nav-item">
-              <Nav.Link href="#agro-ai" class="link-menu">Agro AI</Nav.Link>
-            </li>
-            <li class="nav-item">
-              <Nav.Link href="#noticias" class="link-menu">Notícias</Nav.Link>
-            </li>
-            <li class="nav-item">
-              <Nav.Link href="#faq" class="link-menu">Perguntas Frequentes</Nav.Link>
-            </li>
-            <li class="nav-item">
-              <Nav.Link href="#contato" class="link-menu">Contato</Nav.Link>
-            </li>
+        
+        <Navbar.Collapse id="navbar-items">
+          <Nav className="navbar-nav me-auto mb-2 mb-lg-0 ul-navmenu">
+            {[
+              ["Início", "#inicio"],
+              ["Quem Somos", "#quem-somos"],
+              ["Agro AI", "#agro-ai"],
+              ["Notícias", "#noticias"],
+              ["Perguntas Frequentes", "#faq"],
+              ["Contato", "#contato"]
+            ].map(([title, url]) => (
+              <Nav.Item key={title}>
+                <Nav.Link 
+                  href={url} 
+                  className="link-menu"
+                  onClick={closeMenu}
+                >
+                  {title}
+                </Nav.Link>
+              </Nav.Item>
+            ))}
           </Nav>
-          <section class="header-buttons">
-            <a href="http://terrasense.ai/login">login</a>
-            <buttonFilled class="btn-filled">Criar Conta</buttonFilled>
+          
+          <section className="header-buttons">
+            <Button 
+              href="http://terrasense.ai/login" 
+              variant="outline-light" 
+              className="btn-link"
+              onClick={closeMenu}
+            >
+              Login
+            </Button>
+            <Button 
+              variant="primary" 
+              className="btn-filled"
+              onClick={closeMenu}
+            >
+              Criar Conta
+            </Button>
           </section>
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
-}
+};
 
-export {NavbarTerrasense};
+export { CustomNavbar };

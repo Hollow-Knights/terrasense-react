@@ -2,7 +2,6 @@ import "./hero.css";
 import "../utils/buttons/buttonFilled";
 import "../utils/buttons/buttonOutlined";
 
-
 const Hero = () => {
   return (
     <section
@@ -20,6 +19,7 @@ const Hero = () => {
         />
         <div className="container-hero">
           <h1>Plantando tecnologia, colhendo resultados</h1>
+          <a className="link" href="https://youtube.com" target="_blank">Link do Pitch Vídeo</a>
           <div className="buttons-hero">
             <buttonOutlined className="btn-outlined">Entrar em Contato</buttonOutlined>
             <buttonFilled className="btn-filled">Criar Conta</buttonFilled>

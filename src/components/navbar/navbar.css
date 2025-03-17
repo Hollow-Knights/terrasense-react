@@ -1,82 +1,81 @@
-#link-logo {
-  transition: all 0.2s linear;
+/* navbar.css */
+
+#navbar {
+  padding: 12px 20px; /* Reduzir padding para mobile */
+  transition: all 0.3s ease;
 }
 
-#link-logo:hover {
-  transform: scale(1.1);
+#link-logo img {
+  width: 180px; /* Tamanho fixo para o logo */
+  height: auto;
 }
-
-.navbar {
-  position: sticky;
-  top: 0;
-  overflow: hidden;
-  background-color: hsla(0, 0%, 4%, 0.95) !important;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: auto;
-  padding: 12px 120px;
-  gap: 64px;
-  border-bottom: 1px solid #b4d744;
-  z-index: 2;
-}
-
-/* NAVMENU */
 
 .navbar-nav {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+
 }
 
-.navbar-toggler {
-  color: #ffffff;
-  border: 1px solid #ffffff;
-}
-
-.navbar-toggler button:active {
-  border: 1px solid #87a922;
-}
-
-.ul-navmenu {
+.header-buttons {
   display: flex;
-  justify-content: space-around;
-  list-style-type: none;
-  width: 100%;
-  background-color:hsla(0, 0%, 4%, 0.95) !important;
+  gap: 15px;
+  align-items: center;
 }
 
-.nav-item a {
-  color: #ffffff;
-  text-decoration: none;
-  transition: 0.3s;
-  text-decoration: none;
-}
-
-.ul-navmenu a:hover {
-  color: #87a922;
-  text-decoration: underline;
-}
-
-.nav-item a:hover {
-  color: #b4d744;
-  text-decoration: underline;
-}
-
-#navbar a.active {
-  color: #87a922;
-  text-decoration: underline;
-}
-
-#navbar-items .navbar-nav {
+#container-nav {
   display: flex;
-  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.nav-item {
-  padding: 8px 16px;
-  text-align: center;
+/* Media Queries para responsividade */
+@media (max-width: 992px) {
+  #navbar {
+    padding: 10px 20px;
+  }
+  
+  #container-nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-buttons {
+    width: 100%;
+    justify-content: center;
+    margin-top: 15px;
+    flex-direction: column;
+  }
+
+  .btn-link, .btn-filled {
+    width: 100%;
+    text-align: center;
+  }
+
+  .ul-navmenu {
+    flex-direction: column;
+    padding: 20px 0;
+  }
+
+  .nav-item {
+    padding: 12px 0;
+  }
 }
 
-.nav-link {
-  text-align: center;
+@media (min-width: 993px) {
+  .navbar-nav {
+    margin-left: 40px;
+    gap: 25px;
+  }
+}
+
+@media (max-width: 576px) {
+  #link-logo img {
+    width: 140px; /* Logo menor para mobile */
+  }
+  
+  .navbar-toggler {
+    padding: 5px 10px;
+    font-size: 1rem;
+  }
 }
