@@ -26,14 +26,6 @@ const CustomNavbar = () => {
           />
         </Navbar.Brand>
         
-        <Navbar.Toggle 
-          aria-controls="navbar-items" 
-          className="navbar-toggler"
-          onClick={() => setExpanded(!expanded)}
-        >
-          <i className="bi bi-list"></i>
-        </Navbar.Toggle>
-        
         <Navbar.Collapse id="navbar-items">
           <Nav className="navbar-nav me-auto mb-2 mb-lg-0 ul-navmenu">
             {[
@@ -55,24 +47,6 @@ const CustomNavbar = () => {
               </Nav.Item>
             ))}
           </Nav>
-          
-          <section className="header-buttons">
-            <Button 
-              href="http://terrasense.ai/login" 
-              variant="outline-light" 
-              className="btn-link"
-              onClick={closeMenu}
-            >
-              Login
-            </Button>
-            <Button 
-              variant="primary" 
-              className="btn-filled"
-              onClick={closeMenu}
-            >
-              Criar Conta
-            </Button>
-          </section>
         </Navbar.Collapse>
       </Container>
     </Navbar>
