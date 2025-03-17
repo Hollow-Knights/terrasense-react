@@ -1,6 +1,6 @@
 import './App.css';
 import { Hero } from './components/hero/hero';
-// import { NavbarTerrasense } from './components/navbar/navbar';
+import { CustomNavbar } from './components/navbar/navbar';
 import { About } from './components/about/about';
 import { AgroAI } from './components/agro-ai/agro-ai';
 import { Faq } from './components/faq/faq';
@@ -11,7 +11,7 @@ import { News } from './components/news/news';
 function App() {
   return (
     <div className="App">
-      {/* <NavbarTerrasense /> */}
+      <CustomNavbar />
       <Hero />
       <About />
       <AgroAI />
