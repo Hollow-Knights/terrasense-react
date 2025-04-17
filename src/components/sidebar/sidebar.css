@@ -119,7 +119,6 @@
   background-color: #668219;
 }
 
-/* Responsive adjustments */
 @media (max-width: 450px) {
   .sidebar {
     width: 100%;
