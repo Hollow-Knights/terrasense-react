@@ -1,10 +1,10 @@
 import "./navbar.css";
 import React from "react";
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
-
+import { useSidebar } from "../../contexts/SidebarContext";
 const CustomNavbar = () => {
   const [expanded, setExpanded] = React.useState(false);
-
+  const { toggleSidebar, toggleSignIn, toggleSignUp } = useSidebar();
   const closeMenu = () => {
     setExpanded(false);
   };
@@ -48,6 +48,17 @@ const CustomNavbar = () => {
             ))}
           </Nav>
         </Navbar.Collapse>
+
+        <div className="nav-buttons">
+          <Button className="btn-signin" variant="outline-light" onClick={() => {
+            toggleSignIn();
+            toggleSidebar();
+          }}>Login</Button>
+          <Button className="btn-signup" variant="outline-light" onClick={() => {
+            toggleSignUp();
+            toggleSidebar();
+          }}>Criar Conta</Button>
+        </div>
       </Container>
     </Navbar>
   );
