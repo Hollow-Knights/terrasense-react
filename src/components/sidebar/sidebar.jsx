@@ -1,8 +1,34 @@
 import { useSidebar } from "../../contexts/SidebarContext";
+import { FormField } from "../forms/forms";
 import "./sidebar.css";
+import { useState } from "react";
 
 const Sidebar = () => {
   const { isOpen, toggleSidebar, isSignIn, toggleSignIn, toggleSignUp } = useSidebar();
+  const [signUpFormData, setSignUpFormData] = useState({
+    nome: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
+  const [signInFormData, setSignInFormData] = useState({
+    email: '',
+    password: ''
+  });
+
+  const handleSignInChange = (id, value) => {
+    setSignInFormData(prev => ({
+      ...prev,
+      [id]: value
+    }));
+  };
+
+  const handleSignUpChange = (id, value) => {
+    setSignUpFormData(prev => ({
+      ...prev,
+      [id]: value
+    }));
+  };
 
   return (
     <>
@@ -16,7 +42,7 @@ const Sidebar = () => {
       <div className={`sidebar ${isOpen && 'open'}`}>
         <div className="sidebar-header">
           <button className="close-btn" onClick={toggleSidebar}>
-            &times;
+            <img src="/images/icons/chevron-icon.svg" alt="Icone de chevron" />
           </button>
         </div>
         <div className="sidebar-content">
@@ -29,42 +55,74 @@ const Sidebar = () => {
           <>
             <h2>Bem-vindo de volta!</h2>
             <form className="signup-form">
-              
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <input type="email" id="email" placeholder="seu.email@exemplo.com" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="password">Senha</label>
-                <input type="password" id="password" placeholder="********" />
-              </div>
+              <FormField 
+                id="email" 
+                label="E-mail" 
+                placeholder="Digite o seu e-mail"
+                value={signInFormData.email}
+                onChange={handleSignInChange}
+                error=""
+              />
+              <FormField 
+                id="password" 
+                label="Senha" 
+                type="password"
+                placeholder="********"
+                value={signInFormData.password}
+                onChange={handleSignInChange}
+                error=""
+              />
               <button type="submit" className="submit-btn">Entrar</button>
             </form>
-            <p className="signup-link" onClick={toggleSignUp}>Não possui uma conta? Cadastre-se</p>
+            
+            <div className="separator">ou</div>
+            
+            <p className="signup-link" onClick={toggleSignUp}>Não possui uma conta? <b>Cadastre-se</b></p>
           </>
           )}
           {!isSignIn && (
           <>
             <h2>Bem-vindo!</h2>
             <form className="signup-form">
-              <div className="form-group">
-                <label htmlFor="name">Nome</label>
-                <input type="text" id="name" placeholder="Seu nome completo" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <input type="email" id="email" placeholder="seu.email@exemplo.com" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="password">Senha</label>
-                <input type="password" id="password" placeholder="********" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="confirm-password">Confirmar Senha</label>
-                <input type="password" id="confirm-password" placeholder="********" />
-              </div>
+              <FormField 
+                id="nome" 
+                label="Nome" 
+                placeholder="Digite o seu nome completo"
+                value={signUpFormData.nome}
+                onChange={handleSignUpChange}
+                error=""
+              />
+              <FormField 
+                id="email" 
+                label="E-mail" 
+                placeholder="Digite o seu e-mail"
+                value={signUpFormData.email}
+                onChange={handleSignUpChange}
+                error=""
+              />
+              <FormField 
+                id="password" 
+                label="Senha"
+                type="password" 
+                placeholder="********"
+                value={signUpFormData.password}
+                onChange={handleSignUpChange}
+                error=""
+              />
+              <FormField 
+                id="confirmPassword" 
+                label="Confirmar Senha"
+                type="password" 
+                placeholder="********"
+                value={signUpFormData.confirmPassword}
+                onChange={handleSignUpChange}
+                error=""
+              />
               <button type="submit" className="submit-btn">Cadastrar</button>
             </form>
+            
+            <div className="separator">ou</div>
+            
             <p className="signin-link" onClick={toggleSignIn}>Voltar para o login</p>
           </>
           )}

@@ -29,7 +29,7 @@
   background-position: center;
   box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  padding: 20px;
+  padding: 20px 0 0;
   overflow-y: auto;
   transform: translateX(100%);
   transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
@@ -37,30 +37,41 @@
 }
 
 .sidebar.open {
+  right: 0;
   transform: translateX(0);
 }
 
 .sidebar-header {
   display: flex;
-  justify-content: flex-end;
-  margin-bottom: 20px;
+  justify-content: flex-start;
+  margin-bottom: 0;
 }
 
 .close-btn {
-  background: none;
+  background-color: #87A922;
   border: none;
-  font-size: 24px;
+  width: 72px;
+  height: 40px;
+  border-radius: 0 5px 5px 0;
   cursor: pointer;
-  transform: scale(1);
-  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background-color 0.3s ease;
 }
 
 .close-btn:hover {
-  transform: scale(1.2);
+  background-color: #668219;
+}
+
+.close-btn span {
+  display: inline-block;
+  color: white;
 }
 
 .sidebar-content {
-  padding: 10px;
+  padding: 20px;
 }
 
 .sidebar-content img {
@@ -69,34 +80,26 @@
   object-fit: contain;
 }
 
-.sidebar.open .sidebar-content {
-  opacity: 1;
-  transform: translateX(0);
-}
-
 .sidebar-content h2 {
   margin: 16px 0;
   color: #fff;
 }
 
-.sidebar-content p {
-  color: #fff;
-  margin: 16px 0;
-  cursor: pointer;
-}
-
-.signup-form .form-group {
-  margin-bottom: 15px;
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .signup-form label {
   display: block;
   margin-bottom: 5px;
   font-weight: 600;
+  color: #fff;
+  text-align: left;
 }
 
 .signup-form input {
-  width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -117,6 +120,49 @@
 
 .submit-btn:hover {
   background-color: #668219;
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 20px 0;
+  color: #fff;
+}
+
+.separator::before,
+.separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.separator::before {
+  margin-right: 10px;
+}
+
+.separator::after {
+  margin-left: 10px;
+}
+
+.signup-link {
+  color: #fff;
+  text-align: center;
+  margin-top: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.signup-link b {
+  color: #668219;
+}
+
+.signin-link {
+  color: #668219;
+  text-align: center;
+  margin-top: 10px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 @media (max-width: 450px) {
