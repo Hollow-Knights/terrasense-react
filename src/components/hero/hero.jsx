@@ -22,7 +22,7 @@ const Hero = () => {
         />
         <div className="container-hero">
           <h1>Plantando tecnologia, colhendo resultados</h1>
-          <a className="link" href="https://youtube.com" target="_blank" rel="noreferrer">Link do Pitch Vídeo</a>
+          <a className="link" href="https://www.youtube.com/watch?v=gwdACmOo3vI" target="_blank" rel="noreferrer">Link do Pitch Vídeo</a>
           <div className="buttons-hero">
             <buttonOutlined className="btn-outlined">Entrar em Contato</buttonOutlined>
             <buttonFilled className="btn-filled" onClick={() => {
