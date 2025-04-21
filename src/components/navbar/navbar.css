@@ -59,6 +59,11 @@
   gap: 10px;
 }
 
+.nav-buttons h2 {
+  color: #ffffff;
+  font-size: 16px;
+}
+
 .nav-buttons .btn-signin {
   background-color: transparent;
   color: #87A922;

@@ -2,9 +2,11 @@ import { useSidebar } from "../../contexts/SidebarContext";
 import { FormField } from "../forms/forms";
 import "./sidebar.css";
 import { useState } from "react";
+import { useAuth } from "../../contexts/AuthProvider";
 
 const Sidebar = () => {
   const { isOpen, toggleSidebar, isSignIn, toggleSignIn, toggleSignUp } = useSidebar();
+  const { login, register } = useAuth();
   const [signUpFormData, setSignUpFormData] = useState({
     nome: '',
     email: '',
@@ -28,6 +30,16 @@ const Sidebar = () => {
       ...prev,
       [id]: value
     }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (isSignIn) {
+      await login(signInFormData.email, signInFormData.password);
+    } else {
+      await register(signUpFormData.nome, signUpFormData.email, signUpFormData.password);
+    }
+    toggleSidebar();
   };
 
   return (
@@ -54,7 +66,7 @@ const Sidebar = () => {
           {isSignIn && (
           <>
             <h2>Bem-vindo de volta!</h2>
-            <form className="signup-form">
+            <form className="signup-form" onSubmit={handleSubmit}>
               <FormField 
                 id="email" 
                 label="E-mail" 
@@ -83,7 +95,7 @@ const Sidebar = () => {
           {!isSignIn && (
           <>
             <h2>Bem-vindo!</h2>
-            <form className="signup-form">
+            <form className="signup-form" onSubmit={handleSubmit}>
               <FormField 
                 id="nome" 
                 label="Nome" 

@@ -2,12 +2,15 @@ import "./navbar.css";
 import React from "react";
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import { useSidebar } from "../../contexts/SidebarContext";
+import { useAuth } from "../../contexts/AuthProvider";
+
 const CustomNavbar = () => {
   const [expanded, setExpanded] = React.useState(false);
   const { toggleSidebar, toggleSignIn, toggleSignUp } = useSidebar();
   const closeMenu = () => {
     setExpanded(false);
   };
+  const { user, isAuthenticated, logout } = useAuth();
 
   return (
     <Navbar 
@@ -49,16 +52,25 @@ const CustomNavbar = () => {
           </Nav>
         </Navbar.Collapse>
 
-        <div className="nav-buttons">
-          <Button className="btn-signin" variant="outline-light" onClick={() => {
-            toggleSignIn();
-            toggleSidebar();
-          }}>Login</Button>
-          <Button className="btn-signup" variant="outline-light" onClick={() => {
-            toggleSignUp();
-            toggleSidebar();
-          }}>Criar Conta</Button>
-        </div>
+        {isAuthenticated && user ? (
+          <div className="nav-buttons">
+            <h2>{user.name}</h2>
+            <Button className="btn-signup" variant="outline-light" onClick={() => {
+              logout();
+            }}>Logout</Button>
+          </div>
+        ) : (
+          <div className="nav-buttons">
+            <Button className="btn-signin" variant="outline-light" onClick={() => {
+              toggleSignIn();
+              toggleSidebar();
+            }}>Login</Button>
+            <Button className="btn-signup" variant="outline-light" onClick={() => {
+              toggleSignUp();
+              toggleSidebar();
+            }}>Criar Conta</Button>
+          </div>
+        )}
       </Container>
     </Navbar>
   );
